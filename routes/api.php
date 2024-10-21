@@ -32,7 +32,7 @@ Route::middleware(['check.auth.token'])->group(function () {
             Route::get('/all', 'getAllMovies');
             Route::get('/{id}', 'getMovieById');
             Route::post('/update', 'updateMovie');
-            Route::post('/delete/{id}', 'deleteMovie');
+            Route::post('/delete', 'deleteMovie');
         });
         
     });

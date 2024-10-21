@@ -17,11 +17,12 @@ class MovieRepository implements MovieRepositoryInterface {
         return Movie::where('id', $id)->first();
     }
 
-    public function updateMovie(array $data) {
-        return Movie::where('id', $data->id)->update($data);
+    public function updateMovie(array $data, Movie $movie) {
+        $movie->update($data);
+        return $movie;
     }
 
-    public function deleteMovie($id) {
-        return Movie::where('id', $id)->delete();
+    public function deleteMovie(Movie $movie) {
+        return $movie->delete();
     }
 }

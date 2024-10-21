@@ -61,9 +61,10 @@ class MovieController extends Controller
 
     public function updateMovie(Request $request) {
         try {
-           
-            $result = $this->movieRepository->updateMovie($request->all());
-    
+            
+            $movie = $this->movieRepository->getMovieById($request->id);
+            $result = $this->movieRepository->updateMovie($request->all(), $movie);
+
             return ResponseClass::sendResponse(new MovieResource($result));
             
         } catch(\Exception $e) {
@@ -71,12 +72,14 @@ class MovieController extends Controller
         }
     }
 
-    public function deleteMovie($id) {
+    public function deleteMovie(Request $request) {
         try {
-           
-            $result = $this->movieRepository->deleteMovie($id);
-    
-            return ResponseClass::sendResponse(new MovieResource($result));
+            
+            $movie = $this->movieRepository->getMovieById($request->id);
+            
+            $result = $this->movieRepository->deleteMovie($movie);
+
+            return ResponseClass::sendResponse($request->id, "Delete Successfully.");
             
         } catch(\Exception $e) {
             return ResponseClass::sendError($e->getMessage());
