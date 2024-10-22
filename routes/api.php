@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MovieController;
+use App\Http\Controllers\Api\ShowTimeMgmtController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,16 @@ Route::middleware(['check.auth.token'])->group(function () {
             Route::post('/update', 'updateMovie');
             Route::post('/delete', 'deleteMovie');
         });
-        
+    });
+
+    Route::controller(ShowTimeMgmtController::class)->group(function () {
+        Route::prefix('show-time')->group(function () {
+            Route::post('/create', 'createMovieShowTime');
+            Route::get('/all', 'getAllMovieShowTime');
+            Route::get('/{id}', 'getMovieShowTimeById');
+            Route::post('/update', 'updateMoiveShowTime');
+            Route::post('/delete', 'deleteMovieShowTime');
+        });
     });
 });
 

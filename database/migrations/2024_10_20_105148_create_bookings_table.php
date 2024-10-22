@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->unique();
             $table->foreignIdFor(ShowTime::class);
             $table->foreignIdFor(Seat::class);
             $table->timestamps();

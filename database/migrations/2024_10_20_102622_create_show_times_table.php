@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('show_times', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->unique();
             $table->foreignIdFor(Movie::class);
             $table->decimal('price', total: 8, places: 2);
             $table->date('show_date');

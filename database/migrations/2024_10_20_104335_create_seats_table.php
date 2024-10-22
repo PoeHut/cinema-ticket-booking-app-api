@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('seats', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->unique();
             $table->string('row_name');
             $table->enum('column', ['LEFT', 'RIGHT', 'CENTER']);
             $table->integer('row_seat_count');

@@ -3,10 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\ShowTimeMgmtResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MovieResource extends JsonResource
+class ShowTimeMgmtResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,15 +16,12 @@ class MovieResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'cover_photo' => $this->cover_photo,
+            'movie_id' => $this->movie_id,
+            'price' => $this->price,
+            'show_date' => $this->show_date,
+            'show_time' => $this->show_time,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            //Conditionally include show_times
-            'show_times' => $this->when(
-                $this->relationLoaded('show_times') && $this->show_times->isNotEmpty(),
-                ShowTimeMgmtResource::collection($this->show_times)
-            ),
         ];
     }
 }
