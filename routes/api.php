@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\MovieController;
 use App\Http\Controllers\Api\ShowTimeMgmtController;
 
@@ -44,6 +45,16 @@ Route::middleware(['check.auth.token'])->group(function () {
             Route::get('/{id}', 'getMovieShowTimeById');
             Route::post('/update', 'updateMoiveShowTime');
             Route::post('/delete', 'deleteMovieShowTime');
+        });
+    });
+
+    Route::controller(SeatController::class)->group(function () {
+        Route::prefix('seat')->group(function () {
+            Route::post('/create', 'createSeat');
+            Route::get('/all', 'getAllSeats');
+            Route::get('/{id}', 'getSeatById');
+            Route::post('/update', 'updateSeat');
+            Route::post('/delete', 'deleteSeat');
         });
     });
 });

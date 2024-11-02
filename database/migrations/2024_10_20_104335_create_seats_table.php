@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->uuid('id')->unique();
-            $table->string('row_name');
+            $table->string('row_name')->unique();
             $table->enum('column', ['LEFT', 'RIGHT', 'CENTER']);
             $table->integer('row_seat_count');
             $table->timestamps();
