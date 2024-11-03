@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\SeatNum;
-use App\Models\ShowTime;
+use App\Models\Seat;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('seat_nums', function (Blueprint $table) {
             $table->uuid('id')->unique();
-            $table->foreignIdFor(ShowTime::class);
-            $table->foreignIdFor(SeatNum::class);
+            $table->foreignIdFor(Seat::class);
+            $table->string('seat_no');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('seat_nums');
     }
 };

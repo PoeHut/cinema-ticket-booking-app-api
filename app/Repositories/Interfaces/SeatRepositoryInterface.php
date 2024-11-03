@@ -7,6 +7,6 @@ interface SeatRepositoryInterface {
     public function createSeat(array $data);
     public function getAllSeats();
     public function getSeatById($id);
-    public function updateSeat(array $data, Seat $movie);
-    public function deleteSeat(Seat $movie);
+    public function updateSeat(array $data, Seat $seat);
+    public function deleteSeat(Seat $seat);
 }

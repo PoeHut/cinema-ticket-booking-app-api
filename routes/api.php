@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\SeatController;
 use App\Http\Controllers\Api\MovieController;
+use App\Http\Controllers\Api\SeatNumController;
 use App\Http\Controllers\Api\ShowTimeMgmtController;
+use App\Http\Controllers\Api\BookingServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,24 @@ Route::middleware(['check.auth.token'])->group(function () {
             Route::get('/{id}', 'getSeatById');
             Route::post('/update', 'updateSeat');
             Route::post('/delete', 'deleteSeat');
+        });
+    });
+
+    Route::controller(SeatNumController::class)->group(function () {
+        Route::prefix('seat-num')->group(function () {
+            Route::post('/create', 'createSeat');
+            Route::get('/all', 'getAllSeats');
+            Route::get('/room', 'getRoomSeats');
+            Route::get('/{id}', 'getSeatById');
+            Route::post('/update', 'updateSeat');
+            Route::post('/delete', 'deleteSeat');
+        });
+    });
+
+    Route::controller(BookingServiceController::class)->group(function () {
+        Route::prefix('booking')->group(function () {
+            Route::post('/create', 'createBooking');
+            Route::get('/booked-seats/{id}', 'getBookedRoomSeats');
         });
     });
 });

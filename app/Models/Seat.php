@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\ShowTime;
+use App\Models\SeatNum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Seat extends Model
 {
@@ -18,8 +18,8 @@ class Seat extends Model
         'row_seat_count'
     ];
 
-    public function show_times(): BelongsToMany
+    public function seat_nums(): HasMany
     {
-        return $this->belongsToMany(ShowTime::class);
+        return $this->hasMany(SeatNum::class);
     }
 }
